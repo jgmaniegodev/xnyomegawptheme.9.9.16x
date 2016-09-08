@@ -22,27 +22,7 @@
     <div class="wrapper">
         <div class="wide-ribbon"><img src="<?php echo get_template_directory_uri(); ?>/images/services/wide-ribbon-title.png" class="wide-ribbon-title"/></div>
         <div class="packages">
-            <?php
-            $package_page = get_page_by_title('Frontpage Packages');
-            $packages_page_id = $package_page->ID;
-            if (!empty($packages_page_id)) {
-                $args = array(
-                    'page_id' => $packages_page_id,
-                    'post_type' => 'page',
-                    'post_status' => 'publish',
-                    'posts_per_page' => 1,
-                    'caller_get_posts' => 1
-                );
-                $my_query = null;
-                $my_query = new WP_Query($args);
-                if ($my_query->have_posts()) {
-                    while ($my_query->have_posts()) : $my_query->the_post();
-                        the_content();
-                    endwhile;
-                }
-                wp_reset_query();  // Restore global post data stomped by the_post().
-            }
-            ?>
+            <?php echo do_shortcode('[rpt name="ny-omega-designs-packages"]'); ?>
         </div>
     </div>
 </div>
